@@ -26,6 +26,4 @@ Go to your project directory then use command:
 `firebase serve` - start hosting
 
 **Error: An unexpected error has occurred.
-Please find file `firebase-debug` in your project 
-
-folder.
+Please find file `firebase-debug` in your project folder.

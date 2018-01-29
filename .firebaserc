@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "midas-panel",
+    "midas-panel": "midas-panel"
+  }
+}

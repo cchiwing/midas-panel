@@ -1,12 +1,68 @@
+'use strict';
+
 function MidasPanel() {
     this.checkSetup();
+
+    // Shortcuts to DOM Elements.
+    this.userName = document.getElementById('user-name');
+    this.signInBtn = document.getElementById('sign-in');
+    this.signOutBtn = document.getElementById('sign-out');
+    this.signInSnackbar = document.getElementById('must-signin-snackbar');
+    this.drawerNav = document.getElementById('drawer-nav');
+
+    // Event Listeners
+    this.signOutBtn.addEventListener('click', this.signOut.bind(this));
+    this.signInBtn.addEventListener('click', this.signIn.bind(this));
+
+    this.initFirebase();
 };
 
-MidasPanel.prototype.checkSetup = function () {
+MidasPanel.prototype.initFirebase = function() {
+  // Shortcuts to Firebase SDK features.
+  this.auth = firebase.auth();
+  this.database = firebase.database();
+  this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
+};
+
+MidasPanel.prototype.checkSignedIn = function() {
+
+};
+
+MidasPanel.prototype.onAuthStateChanged = function(user) {
+  if (user) { // User is signed in
+    // Get profile info and display
+    this.userName.textContent = user.displayName;
+    this.userName.removeAttribute('hidden');
+    this.signOutBtn.removeAttribute('hidden');
+    this.drawerNav.removeAttribute('hidden');
+
+    // Hide sign-in button
+    this.signInBtn.setAttribute('hidden', 'true');
+  }else { // User is signed out
+    // Hide user's info and sign-out button
+    this.userName.setAttribute('hidden', 'true');
+    this.signOutBtn.setAttribute('hidden', 'true');
+    this.drawerNav.setAttribute('hidden', 'true');
+
+    // Show sign-in button
+    this.signInBtn.removeAttribute('hidden');
+  }
+};
+
+MidasPanel.prototype.signIn = function() {
+  // Sign in Firebase using popup auth and Google as the identity provider.
+  var provider = new firebase.auth.GoogleAuthProvider();
+  this.auth.signInWithPopup(provider);
+};
+
+MidasPanel.prototype.signOut = function() {
+  this.auth.signOut();
+};
+
+MidasPanel.prototype.checkSetup = function() {
     if(!window.firebase || !(firebase.app instanceof Function) || !firebase.app().options) {
         window.alert('check: firebase sdk, runing using "firebase serve"?');
-    }
-    window.alert("checked up");
+    };
 };
 
 window.onload = function() {

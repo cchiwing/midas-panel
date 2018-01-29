@@ -13,14 +13,14 @@ https://github.com/firebase/friendlychat-web/tree/master/web
 installation
 
 2. setup firebase on your project
-@Frist time install
+###Frist time install
 Go to your project directory then use command:
 `firebase login` - login to your firebase acount
 `firebase init` - generate a firebase.json
 `firebase use --add` - set your project alias
 `firebase serve` - start hosting
 
-@Reopen project
+###Reopen project
 Go to your project directory then use command:
 `firebase use <alias>`
 `firebase serve` - start hosting

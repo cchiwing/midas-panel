@@ -15,6 +15,7 @@ function MidasPanel() {
     this.signOutBtn.addEventListener('click', this.signOut.bind(this));
     this.signInBtn.addEventListener('click', this.signIn.bind(this));
 
+    this.registerServiceWorker();
     this.initFirebase();
 };
 
@@ -23,6 +24,15 @@ MidasPanel.prototype.initFirebase = function() {
   this.auth = firebase.auth();
   this.database = firebase.database();
   this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
+};
+
+MidasPanel.prototype.registerServiceWorker = function() {
+  if('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
+    .then(function() {
+      console.log('Service Worker Registered.');
+    });
+  }
 };
 
 MidasPanel.prototype.onAuthStateChanged = function(user) {
@@ -57,6 +67,16 @@ MidasPanel.prototype.signIn = function() {
 MidasPanel.prototype.signOut = function() {
   location.reload();
   this.auth.signOut();
+};
+
+MidasPanel.prototype.loadOrders = function() {
+  this.ordersRef = this.database.ref('orders');
+  this.ordersRef.off();
+};
+
+MidasPanel.prototype.saveClient = function(e) {
+  e.prevrntDefault();
+
 };
 
 MidasPanel.prototype.checkSetup = function() {

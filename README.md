@@ -25,3 +25,7 @@ Go to your project directory then use command:
 
 **Error: An unexpected error has occurred.
 Please find file `firebase-debug` in your project folder.
+
+## Refference Code
+- Popup Dialog
+https://codepen.io/Garbee/pen/EPoaMj

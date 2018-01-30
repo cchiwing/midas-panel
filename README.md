@@ -8,9 +8,7 @@ https://github.com/firebase/friendlychat-web/tree/master/web
 ## Setup firebase
 1. install firebase command tool by npm
 `npm -g install firebase-tools`
-`firebase --version` - to comfirm your version & 
-
-installation
+`firebase --version` - to comfirm your version & installation
 
 2. setup firebase on your project
 ###Frist time install

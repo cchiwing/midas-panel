@@ -40,6 +40,20 @@
 
     </head>
     <body>
+      <dialog id="login-dialog" class="mdl-dialog">
+        <h3 class="mdl-dialog__title">Please sign-in</h3>
+        <div class="mdl-dialog__content">
+          <p>
+            You must sign-in to use this panel.
+          </p>
+        </div>
+        <div class="mdl-dialog__actions">
+          <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--black">
+                  <i class="material-icons">account_circle</i>Sign-in with Google
+          </button>
+        </div>
+      </dialog>
+
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
@@ -55,9 +69,6 @@
                 </div>
                 <button hidden id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--black">
                         Sign-out
-                </button>
-                <button hidden id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--black">
-                        <i class="material-icons">account_circle</i>Sign-in with Google
                 </button>
                 <nav id="drawer-nav" class="mdl-navigation">
                     <a class="mdl-navigation__link" href="">Link</a>

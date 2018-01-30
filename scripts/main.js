@@ -9,6 +9,7 @@ function MidasPanel() {
     this.signOutBtn = document.getElementById('sign-out');
     this.signInSnackbar = document.getElementById('must-signin-snackbar');
     this.drawerNav = document.getElementById('drawer-nav');
+    this.loginDialog = document.getElementById('login-dialog');
 
     // Event Listeners
     this.signOutBtn.addEventListener('click', this.signOut.bind(this));
@@ -24,10 +25,6 @@ MidasPanel.prototype.initFirebase = function() {
   this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
 };
 
-MidasPanel.prototype.checkSignedIn = function() {
-
-};
-
 MidasPanel.prototype.onAuthStateChanged = function(user) {
   if (user) { // User is signed in
     // Get profile info and display
@@ -35,6 +32,7 @@ MidasPanel.prototype.onAuthStateChanged = function(user) {
     this.userName.removeAttribute('hidden');
     this.signOutBtn.removeAttribute('hidden');
     this.drawerNav.removeAttribute('hidden');
+    this.loginDialog.close();
 
     // Hide sign-in button
     this.signInBtn.setAttribute('hidden', 'true');
@@ -43,6 +41,7 @@ MidasPanel.prototype.onAuthStateChanged = function(user) {
     this.userName.setAttribute('hidden', 'true');
     this.signOutBtn.setAttribute('hidden', 'true');
     this.drawerNav.setAttribute('hidden', 'true');
+    this.loginDialog.showModal();
 
     // Show sign-in button
     this.signInBtn.removeAttribute('hidden');
@@ -56,6 +55,7 @@ MidasPanel.prototype.signIn = function() {
 };
 
 MidasPanel.prototype.signOut = function() {
+  location.reload();
   this.auth.signOut();
 };
 

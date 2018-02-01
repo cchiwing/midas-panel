@@ -28,10 +28,15 @@ MidasPanel.prototype.initFirebase = function() {
 
 MidasPanel.prototype.registerServiceWorker = function() {
   if('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js')
-    .then(function() {
-      console.log('Service Worker Registered.');
-    });
+    if(navigator.serviceWorker.controller) {
+      console.log('[SW] active service worker found, no need to register')
+    } else {
+      navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('[SW] Registered, with scope: ', reg.scope))
+      .catch(err => console.log('[SW] Fail to install: ', err));
+    }
+  }else{
+    console.log('[SW] No Service Worker in this navigator.');
   }
 };
 

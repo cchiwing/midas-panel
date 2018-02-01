@@ -1,9 +1,0 @@
-{
-  "short_name" : "Midas Panel",
-  "name": "Midas Panel",
-  "start_url": "/index.html",
-  "display": "standalone",
-  "theme_color": "#2196F3",
-  "orientation": "portrait",
-  "gcm_sender_id": "103953800507"
-}

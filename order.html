@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Midas Panel</title>
+  <title>Midas Panel - Index</title>
 
   <!-- Disable tap highlight on IE -->
   <meta name="msapplication-tap-highlight" content="no">
@@ -51,26 +51,63 @@
 
 </head>
 <body>
-  <div class="demo-card-wide mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Welcome</h2>
-  </div>
-  <div class="mdl-card__supporting-text">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Mauris sagittis pellentesque lacus eleifend lacinia...
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--black">
-      <i class="material-icons">account_circle</i>Sign-in with Google
-    </button>
-  </div>
-  <div class="mdl-card__menu">
-    <button class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">
-      <i class="material-icons">share</i>
-    </button>
-  </div>
-</div>
+  <dialog id="login-dialog" class="mdl-dialog">
+    <h3 class="mdl-dialog__title">Please sign-in</h3>
+    <div class="mdl-dialog__content">
+      <p>
+        You must sign-in to use this panel.
+      </p>
+    </div>
+    <div class="mdl-dialog__actions">
+      <button id="sign-in" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--black">
+        <i class="material-icons">account_circle</i>Sign-in with Google
+      </button>
+    </div>
+  </dialog>
 
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+      <!-- Title -->
+        <span class="mdl-layout-title">Midas Panel</span>
+        <div class="mdl-layout-spacer"></div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable
+        mdl-textfield--floating-label mdl-textfield--align-right">
+        <label class="mdl-button mdl-js-button mdl-button--icon"
+        for="fixed-header-drawer-exp">
+        <i class="material-icons">search</i>
+      </label>
+      <div class="mdl-textfield__expandable-holder">
+        <input class="mdl-textfield__input" type="text" name="sample"
+        id="fixed-header-drawer-exp">
+      </div>
+    </div>
+  </div>
+</header>
+<div class="mdl-layout__drawer">
+  <div id="user-container">
+    <h3 class="mdl-layout-title" hidden id="user-name">user-name</h3>
+  </div>
+  <button hidden id="sign-out" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-color-text--black">
+    Sign-out
+  </button>
+  <nav id="drawer-nav" class="mdl-navigation">
+    <a class="mdl-navigation__link" href="/index.html">Home</a>
+    <a class="mdl-navigation__link" href="/order.html">Orders</a>
+    <a class="mdl-navigation__link" href="">Clients</a>
+    <a class="mdl-navigation__link" href="">Products</a>
+    <a class="mdl-navigation__link" href="">Works</a>
+  </nav>
+</div>
+<main class="mdl-layout__content">
+  <div class="page-content"><!-- Your content goes here --></div>
+
+  <div id="must-signin-snackbar" class="mdl-js-snackbar mdl-snackbar">
+    <div class="mdl-snackbar__text"></div>
+    <button class="mdl-snackbar__action" type="button"></button>
+  </div>
+</main>
+</div>
 
 
 <!-- Import and configure the Firebase SDK -->

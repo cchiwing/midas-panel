@@ -12,7 +12,7 @@ function MidasPanel() {
     this.loginDialog = document.getElementById('login-dialog');
 
     // Event Listeners
-    this.signOutBtn.addEventListener('click', this.signOut.bind(this));
+    // this.signOutBtn.addEventListener('click', this.signOut.bind(this));
     this.signInBtn.addEventListener('click', this.signIn.bind(this));
 
     this.registerServiceWorker();

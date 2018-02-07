@@ -6,11 +6,13 @@ function Firetest() {
   this.deleteClientBtn = document.getElementById('delete-client');
   this.addClientBtn = document.getElementById('add-client');
   this.testBtn = document.getElementById('test-button');
+  this.addClientModal = document.getElementById('add-client-modal');
+  this.closeModalBtn = document.getElementsByClassName('cancel')[0];
 
   // = = = Event
-  // this.deleteClientBtn.addEventListener('click',this.deleteClient.bind(this));
-  this.addClientBtn.addEventListener('click',this.addClient.bind(this));
-  this.testBtn.addEventListener('click', this.addClient.bind(this));
+  this.addClientBtn.addEventListener('click',this.saveClient.bind(this));
+  this.testBtn.addEventListener('click', this.showModal.bind(this));
+  this.closeModalBtn.addEventListener('click', this.hideModal.bind(this));
 
   this.loadClient();
 };
@@ -27,18 +29,6 @@ function Firetest() {
 // CLIENT =========================================================
 //=================================================================
 
-Firetest.prototype.addClient = function(e) {
-  // var key = Math.random();
-  // var data = {
-  //   name: "new name",
-  //   tel: "new tel",
-  //   addr: "new addr"
-  // };
-  // this.displayClient(key,data,Firetest.CLIENT_CELL_TEMPLATE);
-
-  this.saveClient(e);
-};
-
 Firetest.CLIENT_CELL_TEMPLATE =
     '<td class="name"></td>'+
     '<td class="tel"></td>'+
@@ -48,10 +38,9 @@ Firetest.CLIENT_CELL_TEMPLATE =
 Firetest.prototype.displayClient = function(id, data, tamplate) {
   var row = document.getElementById(id);
   if(!row){
-    var row = document.createElement('tr');
+    var row = this.clientTable.insertRow(0);
     row.innerHTML = tamplate;
     row.setAttribute('id', id);
-    this.clientTable.appendChild(row);
     row.querySelector('#delete-client').addEventListener('click',this.removeClient.bind(this));
   }
   for(var key in data){
@@ -59,10 +48,12 @@ Firetest.prototype.displayClient = function(id, data, tamplate) {
   }
 };
 
-Firetest.prototype.deleteClient = function(e) {
-  // var p=e.target.parentNode.parentNode;
-  var p = e.target.closest("tr");
-  p.parentNode.removeChild(p);
+Firetest.prototype.showModal = function() {
+  this.addClientModal.style.display = "block";
+};
+
+Firetest.prototype.hideModal = function() {
+  this.addClientModal.style.display = "none";
 };
 
 /*
@@ -115,13 +106,6 @@ Firetest.prototype.saveClient = function(e) {
       console.log('Error updating data:', error);
     }
   });
-
-  // = = =  save clients
-    // var newPostKey = firebase.database().ref().child('clients').push({
-  	// 	name: "ClientNameA",
-  	// 	tel: "56785678",
-    //   addr:"建發街 新興大廈 14 樓"
-    // }).key;
 };
 
 Firetest.prototype.removeClient = function(e) {
